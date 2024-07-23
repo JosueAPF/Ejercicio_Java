@@ -29,7 +29,7 @@ class Pila{
    //show data
    public void MostrarDatos(){
       System.out.println("Mostrando los datos");
-      for(int i=tope;i<size;i++){
+      for(int i=tope;i>=0;i--){
          System.out.println(pila[i]);
       }
    }
@@ -40,18 +40,26 @@ class Pila{
       System.out.println("Nada que borrar, la pila esta vacia");
       return 0;
      }else{
-      return tope--;
+      //para devolver el dato verdadero
+      int DatoPila = pila[tope];
+      tope--;
+      return DatoPila;
      }
    }
 }
+
+//main
 public class PilaEstatica{
    public static void main(String[] args){  
        Pila stack = new Pila();
        stack.Push(1);
        stack.Push(2);
        stack.Push(3);
+       stack.Push(4);
+       stack.Push(5);
        stack.MostrarDatos();
-       stack.Pop();
+       System.out.println("Dato eliminado : "+stack.Pop());
+       stack.MostrarDatos();
    }
 
 }
