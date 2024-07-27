@@ -1,0 +1,15 @@
+
+
+Ejercicio con while
+En una empresa trabajan n empleados cuyos sueldos oscilan entre Q1000 y Q7500. 
+Realizar un programa que lea los sueldos que cobra cada empleado e informe cuántos empleados cobran entre Q1000 y Q4000 y cuántos cobran más de Q4000. 
+Además, el programa deberá informar el importe que gasta la empresa en sueldos al personal.
+
+
+De un operario se conoce su sueldo y los años de antigüedad. Se pide confeccionar un programa 
+que lea los datos de entrada e informe:
+a) Pedir el sueldo y los años de antigüedad.
+b) Si el sueldo es inferior a Q5000 y su antigüedad es igual o superior a 10 años, otorgarle un aumento del 20 %, mostrar el sueldo a pagar.
+c) Si el sueldo es inferior a Q5000 pero su antigüedad es menor a 10 años, otorgarle un aumento de 5 %.
+d) Si el sueldo es mayor o igual a Q5000 mostrar el sueldo en pantalla sin cambios.
+e) Mostrar el sueldo anual.
