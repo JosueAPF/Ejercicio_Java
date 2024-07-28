@@ -219,6 +219,53 @@ class Datos{
 
 
 
+
+class JornadaL{
+	
+	private Scanner in;
+	private int opc;
+	private String mensaje;
+	
+	public JornadaL() {
+		in = new Scanner(System.in);
+		opc = 0;
+		mensaje = "";
+	}
+	
+	public void Menu_Opc(){
+		System.out.println("------MENU Horaros-------:");
+		System.out.println("Ingrese una opcion :");
+		System.out.println("1. Matutina ");
+		System.out.println("2. Vespertina ");
+		System.out.println("3. Nocturna");
+		System.out.println("4. salir ");
+		opc = in.nextInt();
+		switch(opc){
+		case 1: 
+			mensaje = "Matutino: 5:00 a 13:00 horas"; 
+			System.out.println(mensaje);
+			break;
+		case 2:
+			mensaje = "Vespertino: 13:00 a 20:00 horas";
+			System.out.println(mensaje);	 
+			break;
+		case 3: 
+			mensaje = "Nocturno: 20:00 a 5:00 horas"; 
+			System.out.println(mensaje);
+			break;
+		case 4: 
+			mensaje = "adios"; 
+			System.out.println(mensaje);
+			break;
+		default:
+			mensaje = "no existe esa opcion";
+			break;
+		}
+		
+	}
+}
+
+
 class Menu{
     private int opc;
     private Scanner in;
@@ -237,7 +284,7 @@ class Menu{
             System.out.println("4. Datos Empleado (Do-while)");
             System.out.println("5. Jornada Laboral (Switch-case)");
             System.out.println("6. SALIR");
-            System.out.println(" ");
+            //System.out.println(" ");
             opc = in.nextInt();
             in.nextLine();
             switchMmenu(opc);
@@ -269,7 +316,9 @@ class Menu{
                 DatosEmpleado.Empleado();
                 break;
             case 5:
-                System.out.println("opcion 5");
+                System.out.println("Switch");
+                JornadaL EJornada = new JornadaL();
+                EJornada.Menu_Opc();
                 break;
             case 6:
                 System.out.println("Salida, adios :)");

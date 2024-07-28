@@ -3,6 +3,7 @@ package com.MisEmpleados;
 
 /*
  * En una empresa trabajan n empleados cuyos sueldos oscilan entre Q1000 y Q7500. 
+
 	Realizar un programa que lea los sueldos que cobra cada empleado e informe cuántos empleados cobran entre 
 	Q1000 y Q4000 y cuántos cobran más de Q4000. 
 	Además, el programa deberá informar el importe que gasta la empresa en sueldos al personal.
