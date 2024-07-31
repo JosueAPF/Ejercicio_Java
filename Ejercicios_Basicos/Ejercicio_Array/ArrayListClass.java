@@ -2,6 +2,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+
 class Empleados{
 	private String Nombre;
 	private int Edad;
@@ -62,9 +63,6 @@ class MyArray{
 			System.out.println("Datos Empleado");
 			System.out.println(empleados.get(i));
 		}
-	}
-	public void FullData(){
-		///
 	}
 }
 
