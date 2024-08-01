@@ -1,5 +1,5 @@
 /*
- *si empleado gana el minimo o 5000 quetzales si gana el minimo y tiene mas de 2 anos en la empresa darle una bonificacion del 5%
+ *si empleado gana  <5000 quetzales  y tiene mas de 2 anos en la empresa darle una bonificacion del 5%
  *si empleado gana 5000 y tine antiguedad de 2 anos darle bonificacion del 10%
  *si gana mas de 5000 bonificacion = 0;
  *
@@ -23,45 +23,92 @@ import java.util.ArrayList;
 
 class Empleado{
 	private String Nombre,profesion;
-	private int edad,salario;
+	private int edad,salario,antiguedad;
+   private Scanner in;
 
-	public Empleado(String Nombre,String profesion,int edad,int salario){
-		this.Nombre = Nombre;
-		this.profesion =profesion;
-		this.edad=edad;
-		this.salario =salario;
+	public Empleado(){
+		Nombre = "";
+		profesion ="";
+		edad=0;
+		salario =0;
+      antiguedad = 0;
+      in = new Scanner(System.in);
 	}
+   public void IngresoDatos(){
+       System.out.println("Ingrese Nombre :");
+       Nombre = in.nextLine();
+       System.out.println("Ingrese Prosecion :");
+       profesion = in.nextLine();
+       System.out.println("Ingrese Edad :");
+       edad = in.nextInt();
+       System.out.println("Ingrese Salario :");
+       salario = in.nextInt();
+       System.out.println("Ingrese la antiguedad :");
+       antiguedad = in.nextInt();
+       in.nextLine();  
+      
+   }
 	public int getSalario(){
 		return salario;
 	}
-	public String toString(){
-		return "Nombre :"+Nombre+" Profesion :"+profesion+" Edad :"+edad+" Salario :"+salario;
-		
-	}
-	
+   public int getAntiguedad(){
+      return antiguedad;
+   }
 
 }
-//incompleto ==============================================>
+
 class CalculosBoni extends Empleado{
-	private double boni,SalTotal;
-	public CalculosBoni(String Nombre,String profesion,int edad,int salario){
-		super(Nombre,profesion,edad,salario);
-		this.boni = 0.0;
-		this.SalTotal = 0.0;
+	private double boni,SalTotal,importe,sum;
+	public CalculosBoni(){
+		super();
+		boni = 0.0;
+		SalTotal = 0.0;
+      importe = 0.0;
 	}
 	public void calc(){
-		System.out.println(getSalario());	
+      IngresoDatos();
+		if(getSalario()<5000 && getAntiguedad()<2){
+         boni = getSalario()*0.05;
+      }else if(getSalario()==5000 && getAntiguedad()>2){
+         boni = getSalario()*0.10;
+      }else if(getSalario()>5000){
+         boni = getSalario();
+      }
+      sum +=getSalario();
+      SalTotal = getSalario()+boni;
+      importe = sum;
+      //System.out.println("Salario Total :"+SalTotal);  
+      //System.out.println("Importe Total :"+importe);    	
 	}
-
+   public void TotalEmpleado(){
+      System.out.println("Salario base :"+getSalario());
+      System.out.println("Bonificacion :"+boni);
+      System.out.println("Salario Total :"+SalTotal);  
+      System.out.println("Importe Total :"+importe); 
+   }
 
 }
 
 
 public class ArrayListEmpleados{
-	public static void main(String[] args){
-		CalculosBoni empleado = new CalculosBoni("jose","Cerragero",18,2000);
-		System.out.println(empleado);
-		empleado.calc();
-
+	public static void main(String[] args){   
+      ArrayList<String> list = new ArrayList<>();
+      Scanner in = new Scanner(System.in);
+      boolean opcbool = true;
+      int opcSalida;
+      while(opcbool){
+         CalculosBoni empleado = new CalculosBoni();
+         empleado.calc(); 
+         empleado.TotalEmpleado();
+         
+         System.out.println("Desea Seguir 1:si 0:no");
+         opcSalida = in.nextInt();
+         if(opcSalida != 1){
+            System.out.println("salir");
+            opcbool = false;
+         } 
+         
+         }
+         
 	}
 }
