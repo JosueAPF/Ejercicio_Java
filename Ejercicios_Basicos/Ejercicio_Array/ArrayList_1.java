@@ -48,9 +48,6 @@ public class ArrayList_1{
 		newarrg.Recorrido();
 		newarrg.Eliminacion(0);
 		newarrg.Recorrido();
-
-		
-
 	}
 
 }
