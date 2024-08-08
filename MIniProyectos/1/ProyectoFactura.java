@@ -32,7 +32,11 @@ class Factura{
    public ArrayList<Productos> getProductos(){
          return productos;
    }
-   
+//metodo para limpiar el array para cada nueva factura
+   public ArrayList<Productos> Limpiar(){
+      	return productos; 
+	
+   }
    @Override
    public String toString(){
       return "\n\t\t\t"+"Nit :"+Nit+
@@ -97,7 +101,6 @@ class Productos{
     }
 }
 
-
 class adminFacturas{
     //instancia de las clases 
     private Factura myFactura;
@@ -108,7 +111,7 @@ class adminFacturas{
     private Scanner in;  
     //instancia del  ArrayList de tipo Object para Captura cualquier Tipo de Dato
     private ArrayList<Object> ListaFactura; 
-   
+    private ArrayList<Double> MisTotales;
    
    public adminFacturas(){
        Opcion = true;
@@ -116,13 +119,17 @@ class adminFacturas{
        in = new Scanner(System.in);
        myFactura = new Factura();
        ListaFactura = new ArrayList<>();
+       //probando este array para colocar los totales y se muestren en pantalla
+       MisTotales = new ArrayList<>();
    }
    public void MostrarTitulo(){
          System.out.println("\n========Systema de Facturacion========");
-         System.out.println("=====Josue Abraham Porras Figuero=====");
+         System.out.println("=====Josue Abraham Porras Figueroa=====");
          System.out.println("================Menu=======================");
    }
    public void IngresoDatos(){
+        //limpiar el ArrayList
+        myFactura.Limpiar();
        //para que se ingrese mas de un producto
        char continuar;
        
@@ -156,24 +163,45 @@ class adminFacturas{
          continuar = in.nextLine().charAt(0);
        }while(continuar == 's');
    }
+   //intentar usar este metodo para vifurcar,osea de este metodo puede salir el metodo para calculosTotales() ya se uso para mostrar los datos
+   //de la factura ahora usar Procedimiento() + un nuevo metodo que muestre salidas de SubTotal TotalImpuestos y totalPagar acomulativos.()
+   //practimacemnte el primer paso seria llamar a Procedimiento y luego las salidas.
    public void Procedimientos(){
          double subtotal = 0;
          double totalImpuestos = 0;
          double totalPagar = 0;
          
-         
+       //acomuladores  
         for (int i = 0; i < myFactura.getProductos().size(); i++) {
             Productos producto = myFactura.getProductos().get(i);//pararecupera un objeto Productos del ArrayList<Productos> 
             subtotal += producto.SubTotalProducto();
             totalImpuestos += producto.ImpuestoProducto() * producto.getCantidad();
             totalPagar += producto.Total();
         }
-        //totales acomulados
-        System.out.println("\nSubtotal: " + subtotal);
-        System.out.println("Total Impuestos: " + totalImpuestos);
-        System.out.println("Total a Pagar: " + totalPagar);
+        
+	//totales acomulados
+        //System.out.println("\nSubtotal: " + subtotal);
+        //System.out.println("Total Impuestos: " + totalImpuestos);
+        //System.out.println("Total a Pagar: " + totalPagar);
+	
+	//creacion de un ente Objeto para almacenar multipes valores para posteriormente colocalro en el ArryaList MisTotales
+	//Object[] Valores= { subtotal,totalImpuestos,totalPagar}; 
+	MisTotales.add(subtotal);
+	MisTotales.add(totalImpuestos);
+	MisTotales.add(totalPagar);
    }
-   public void Factura(){     
+   public void Totales(){
+	Procedimientos();
+	System.out.println("======Totales Acomulados======");
+
+	System.out.println("SubTotal :"+MisTotales.get(0));
+        System.out.println("Impuesto :"+MisTotales.get(1));
+        System.out.println("Total :"+MisTotales.get(2));
+	
+   }
+   public void Factura(){
+
+	//datos de las facturas cada factura tiene n cantidad de productos
         System.out.println("Datos de la Factura");
         for(int i=0;i<ListaFactura.size();i++){
             System.out.println("Factura no :"+(i+1));
@@ -183,7 +211,14 @@ class adminFacturas{
         for (int i = 0; i < myFactura.getProductos().size(); i++) {
              System.out.println(myFactura.getProductos().get(i));
          }
-        
+	System.out.println("Total Por Producto");
+	Procedimientos();
+	//for(int j=0;j<MisTotales.size();j++){
+        //     System.out.println("Totales"+"\n"+ MisTotales.get(j));
+        // }
+	System.out.println("SubTotal :"+MisTotales.get(0));
+	System.out.println("Impuesto :"+MisTotales.get(1));
+	System.out.println("Total :"+MisTotales.get(2));        
         
    }
    public void MenuFacturas(){
@@ -210,7 +245,7 @@ class adminFacturas{
                 break;
                 case 3:
                      System.out.println("Calcular totales");
-                     Procedimientos();
+                     Totales();
                      break;
                  case 4:
                      System.out.println("Salida");
@@ -231,4 +266,3 @@ public class ProyectoFactura{
 	   myGestor.MenuFacturas();        
 	}
 }
-
