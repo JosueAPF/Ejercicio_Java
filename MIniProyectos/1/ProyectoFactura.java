@@ -33,9 +33,8 @@ class Factura{
          return productos;
    }
 //metodo para limpiar el array para cada nueva factura
-   public ArrayList<Productos> Limpiar(){
-      	return productos; 
-	
+   public void Limpiar() {
+      productos.clear(); // Limpia la lista de productos
    }
    @Override
    public String toString(){
@@ -128,8 +127,8 @@ class adminFacturas{
          System.out.println("================Menu=======================");
    }
    public void IngresoDatos(){
-        //limpiar el ArrayList
-        myFactura.Limpiar();
+       //limpiar el ArrayList
+       //myFactura.Limpiar();
        //para que se ingrese mas de un producto
        char continuar;
        
@@ -156,9 +155,10 @@ class adminFacturas{
          System.out.println("Ingrese precio por Unidad :");
          myProducts.setPreicoUnitario(in.nextDouble());
          in.nextLine();
+	 //metodo que agrega productos gracias al arrayList<>()
          myFactura.agregarProducto(myProducts);
          
-         
+    				     
          System.out.println("Desea Continuar :(S/N):");
          continuar = in.nextLine().charAt(0);
        }while(continuar == 's');
@@ -173,7 +173,7 @@ class adminFacturas{
          
        //acomuladores  
         for (int i = 0; i < myFactura.getProductos().size(); i++) {
-            Productos producto = myFactura.getProductos().get(i);//pararecupera un objeto Productos del ArrayList<Productos> 
+            Productos producto = myFactura.getProductos().get(i);//para recupera un objeto Productos del ArrayList<Productos> 
             subtotal += producto.SubTotalProducto();
             totalImpuestos += producto.ImpuestoProducto() * producto.getCantidad();
             totalPagar += producto.Total();
@@ -207,15 +207,15 @@ class adminFacturas{
             System.out.println("Factura no :"+(i+1));
             System.out.println(ListaFactura.get(i));
         }
+	//estos datos iterados representan a lo que hay dentro del ArrayList del tipo class(Productos)
         System.out.println("Datos Producto");
         for (int i = 0; i < myFactura.getProductos().size(); i++) {
              System.out.println(myFactura.getProductos().get(i));
          }
+	
 	System.out.println("Total Por Producto");
 	Procedimientos();
-	//for(int j=0;j<MisTotales.size();j++){
-        //     System.out.println("Totales"+"\n"+ MisTotales.get(j));
-        // }
+	//no iterado solo llamada a cada elemento segun el indice
 	System.out.println("SubTotal :"+MisTotales.get(0));
 	System.out.println("Impuesto :"+MisTotales.get(1));
 	System.out.println("Total :"+MisTotales.get(2));        
